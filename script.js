@@ -44,9 +44,37 @@ if (heatmap) {
   heatmap.addEventListener('focusin', (event) => { const cell = event.target.closest('i[data-date]'); if (cell) { const rect = cell.getBoundingClientRect(); showTooltip(cell, rect.left, rect.top); } });
   heatmap.addEventListener('focusout', () => { tooltip.hidden = true; });
   const summary = section.querySelector('.section-heading .muted');
-  fetch('data/contributions.json').then((response) => response.ok ? response.json() : Promise.reject()).catch(() => fallback).then((data) => {
+  const updateLatestArticle = (entries) => {
+    const latest = entries[0];
+    if (!latest) return;
+    const presentations = {
+      'article-ai-agent.html': {
+        title: 'AI Agent 的架构选型：MCP 和 Skills 的核心区别及应用场景分析',
+        summary: '从 MCP、API 与 Agent 的连接方式出发，理解 MCP 和 Skills 各自解决的问题与适用场景。',
+        category: 'AI AGENT · MCP · SKILLS',
+        reading: 'AI Agent · 架构选型'
+      },
+      'article.html': {
+        title: 'KV Cache：大语言模型推理中的关键记忆机制',
+        summary: '理解 Attention、KV Cache 与 PagedAttention 如何共同影响推理吞吐量和显存效率。',
+        category: 'LLM INFERENCE',
+        reading: '阅读约 12 分钟'
+      }
+    };
+    const presentation = presentations[latest.url];
+    if (!presentation) return;
+    const feature = document.querySelector('.feature-band');
+    feature.querySelector('h2').textContent = presentation.title;
+    feature.querySelector('.muted').textContent = presentation.summary;
+    feature.querySelector('.text-link').href = latest.url;
+    feature.querySelector('.eyebrow').textContent = `LATEST ARTICLE · ${presentation.category}`;
+    feature.querySelector('.feature-meta strong').textContent = latest.date.replaceAll('-', '.');
+    feature.querySelector('.feature-meta span:last-child').textContent = presentation.reading;
+  };
+  fetch(`data/contributions.json?v=${Date.now()}`, { cache: 'no-store' }).then((response) => response.ok ? response.json() : Promise.reject()).catch(() => fallback).then((data) => {
     const years = Object.keys(data.years).sort((a, b) => b - a);
     let selectedYear = years[0] || String(new Date().getFullYear());
+    updateLatestArticle(data.years[selectedYear]?.entries || []);
     const render = () => {
       const selected = data.years[selectedYear] || { days: {}, entries: [] };
       const counts = selected.days || {};
