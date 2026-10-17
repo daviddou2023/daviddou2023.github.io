@@ -1,4 +1,4 @@
-document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="contributions.css">');
+document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="contributions.css"><link rel="stylesheet" href="contributions-override.css">');
 
 const heatmap = document.querySelector('.heatmap');
 if (heatmap) {

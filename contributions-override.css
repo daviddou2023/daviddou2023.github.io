@@ -1,0 +1,3 @@
+/* Dynamic data classes own contribution colors. */
+.contribution-section .heatmap i:nth-child(47n),.contribution-section .heatmap i:nth-child(83n),.contribution-section .heatmap i:nth-child(149n),.contribution-section .heatmap i:nth-child(280n){background:#e4e5df}
+.contribution-section .heatmap i.level-0{background:#e4e5df!important}.contribution-section .heatmap i.level-1{background:#c9da83!important}.contribution-section .heatmap i.level-2{background:#a8bf50!important}.contribution-section .heatmap i.level-3{background:#849c35!important}.contribution-section .heatmap i.level-4{background:#5d7628!important}.contribution-section .heatmap i.heatmap-spacer{background:transparent!important}
