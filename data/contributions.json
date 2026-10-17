@@ -1,11 +1,16 @@
 {
-  "generatedAt": "2026-10-17T14:46:58.887Z",
+  "generatedAt": "2026-10-17T15:51:12.130Z",
   "years": {
     "2026": {
       "days": {
-        "2026-10-17": 1
+        "2026-10-17": 2
       },
       "entries": [
+        {
+          "date": "2026-10-17",
+          "title": "AI Agent的架构选型：MCP和Skills的核心区别及应用场景分析（260730）",
+          "url": "article-ai-agent.html"
+        },
         {
           "date": "2026-10-17",
           "title": "KV cache（261013）",
