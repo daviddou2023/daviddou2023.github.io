@@ -21,7 +21,7 @@ if (heatmap) {
   const history = document.createElement('div');
   history.className = 'contribution-history';
   history.innerHTML = '<h3>文章提交记录</h3><div id="contribution-history-list"></div>';
-  main.appendChild(history);
+  layout.appendChild(history);
   const yearList = document.createElement('aside');
   yearList.className = 'year-list';
   yearList.setAttribute('aria-label', '历史年份');
@@ -52,13 +52,19 @@ if (heatmap) {
       const counts = selected.days || {};
       const entries = selected.entries || [];
       const maximum = Math.max(...Object.values(counts), 1);
-      const first = new Date(Number(selectedYear), 0, 1); first.setDate(first.getDate() - first.getDay());
-      const last = new Date(Number(selectedYear), 11, 31); last.setDate(last.getDate() + (6 - last.getDay()));
+      const first = new Date(Number(selectedYear), 0, 1);
+      const last = new Date(Number(selectedYear), 11, 31);
       heatmap.innerHTML = '';
+      for (let blank = 0; blank < first.getDay(); blank += 1) {
+        const spacer = document.createElement('i'); spacer.className = 'heatmap-spacer'; spacer.setAttribute('aria-hidden', 'true'); heatmap.appendChild(spacer);
+      }
       for (let date = new Date(first); date <= last; date.setDate(date.getDate() + 1)) {
         const key = dateKey(date); const count = counts[key] || 0; const cell = document.createElement('i');
         cell.className = `level-${level(count, maximum)}`; cell.dataset.date = key; cell.dataset.count = count; cell.tabIndex = 0; cell.setAttribute('role', 'gridcell');
         cell.setAttribute('aria-label', `${key}: ${count} ${count === 1 ? 'article contribution' : 'article contributions'}`); heatmap.appendChild(cell);
+      }
+      while (heatmap.children.length % 7 !== 0) {
+        const spacer = document.createElement('i'); spacer.className = 'heatmap-spacer'; spacer.setAttribute('aria-hidden', 'true'); heatmap.appendChild(spacer);
       }
       document.querySelector('#contribution-count').textContent = `${entries.length} contributions in ${selectedYear}`;
       if (summary) summary.innerHTML = `${selectedYear} 年发布了 ${entries.length} 篇文章<br>每一次记录，都是一次整理。`;
