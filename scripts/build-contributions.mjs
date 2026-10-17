@@ -1,0 +1,8 @@
+import { execFileSync } from 'node:child_process';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { basename, join } from 'node:path';
+const root = process.cwd(); const contentDir = join(root, 'content');
+const files = existsSync(contentDir) ? readdirSync(contentDir).filter((file) => file.endsWith('.md')) : []; const years = {};
+const gitDates = (file) => { try { return execFileSync('git', ['log', '--format=%ad', '--date=format:%Y-%m-%d', '--follow', '--', join('content', file)], { encoding: 'utf8' }).trim().split(/\r?\n/).filter(Boolean); } catch { return []; } };
+for (const file of files) { const source = readFileSync(join(contentDir, file), 'utf8'); const title = (source.match(/^#\s+(.+)$/m) || [])[1] || basename(file, '.md'); const frontmatterDate = (source.match(/^date:\s*(\d{4}-\d{2}-\d{2})$/m) || [])[1]; const dates = [...new Set(gitDates(file))]; const fallbackDate = new Date(statSync(join(contentDir, file)).mtime).toISOString().slice(0, 10); const contributionDates = frontmatterDate ? [frontmatterDate] : (dates.length ? dates : [fallbackDate]); const url = file === 'kv-cache.md' ? 'article.html' : `article-${basename(file, '.md')}.html`; for (const date of contributionDates) { const year = date.slice(0, 4); years[year] ||= { days: {}, entries: [] }; years[year].days[date] = (years[year].days[date] || 0) + 1; years[year].entries.push({ date, title, url }); } }
+for (const value of Object.values(years)) value.entries.sort((a, b) => b.date.localeCompare(a.date)); mkdirSync(join(root, 'data'), { recursive: true }); writeFileSync(join(root, 'data', 'contributions.json'), JSON.stringify({ generatedAt: new Date().toISOString(), years }, null, 2));
