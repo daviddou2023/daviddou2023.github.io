@@ -60,7 +60,10 @@ if (heatmap) {
       }
       for (let date = new Date(first); date <= last; date.setDate(date.getDate() + 1)) {
         const key = dateKey(date); const count = counts[key] || 0; const cell = document.createElement('i');
-        cell.className = `level-${level(count, maximum)}`; cell.dataset.date = key; cell.dataset.count = count; cell.tabIndex = 0; cell.setAttribute('role', 'gridcell');
+        const intensity = level(count, maximum);
+        cell.className = `level-${intensity}`;
+        cell.style.backgroundColor = intensity === 0 ? '#e4e5df' : ['#e4e5df', '#c9da83', '#a8bf50', '#849c35', '#5d7628'][intensity];
+        cell.dataset.date = key; cell.dataset.count = count; cell.tabIndex = 0; cell.setAttribute('role', 'gridcell');
         cell.setAttribute('aria-label', `${key}: ${count} ${count === 1 ? 'article contribution' : 'article contributions'}`); heatmap.appendChild(cell);
       }
       while (heatmap.children.length % 7 !== 0) {
