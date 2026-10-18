@@ -82,7 +82,7 @@ GitHub 有自己的 `/issues` 端点，Slack 有自己的 `/channels` 参数，�
 
 Mcp is wrong
 
-https://www.reddit.com/r/mcp/comments/1jyld4j/everything\_wrong\_with\_mcp/
+https://www.reddit.com/r/mcp/comments/1jyld4j/everything_wrong_with_mcp/
 
 https://blog.csdn.net/gs80140/article/details/147563832
 

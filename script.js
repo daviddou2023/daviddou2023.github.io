@@ -61,8 +61,12 @@ if (heatmap) {
         reading: '阅读约 12 分钟'
       }
     };
-    const presentation = presentations[latest.url];
-    if (!presentation) return;
+    const presentation = presentations[latest.url] || {
+      title: latest.title,
+      summary: latest.excerpt || '在这里记录新的技术思考与实践。',
+      category: 'TECHNICAL BLOG',
+      reading: '技术文章'
+    };
     const feature = document.querySelector('.feature-band');
     feature.querySelector('h2').textContent = presentation.title;
     feature.querySelector('.muted').textContent = presentation.summary;

@@ -24,9 +24,9 @@ https://muma378.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3KVCache
 > 
 > 
 
-Transformer 的 decoder 过程就是对 Xt=\{E1,E2...Et\}  不断执行上述过程以生成下一个 token ，再将新生成的 token的 embedding 加入后的 Xt\+1 重新执行。
+Transformer 的 decoder 过程就是对 Xt={E1,E2...Et}  不断执行上述过程以生成下一个 token ，再将新生成的 token的 embedding 加入后的 Xt+1 重新执行。
 
-我们可以看到，对于步骤 1、2、4，完全可以省略掉 矩阵和 \{E1,E2...Et\} 相乘的过程，而只计算 W∗Et\+1 即可。
+我们可以看到，对于步骤 1、2、4，完全可以省略掉 矩阵和 {E1,E2...Et} 相乘的过程，而只计算 W∗Et+1 即可。
 
 对于attention的矩阵计算过程，可以用下面的图来表示：
 
@@ -52,7 +52,7 @@ https://muma378.github.io/images/kvcache/kvcache-explained.gif
 
 - **单条长序列请求的 KV Cache 就可能占用几十 GB 显存**
 
-- **批量并发时（batch\_size=32），KV Cache 可超过模型权重本身**
+- **批量并发时（batch_size=32），KV Cache 可超过模型权重本身**
 
 与模型权重不同，KV Cache 有几个让它格外难处理的特点：
 

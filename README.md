@@ -12,3 +12,13 @@
 如果仓库名是 `用户名.github.io`，网站地址就是 `https://用户名.github.io/`。
 
 文章图片已经存放在 `assets/images/kv-cache/`，不依赖飞书授权链接。新增文章时，将 Markdown 文件放入 `content/`，并在对应页面增加文章入口即可。
+
+## 导入 Markdown 文章
+
+将飞书导出的 Markdown 放入 `content/` 后，在项目根目录运行：
+
+```powershell
+node import-articles.mjs
+```
+
+脚本会本地化文章图片、生成文章详情页并重建技术博客列表。文章及生成文件检查无误后，再自行提交。GitHub Actions 发布时也会自动运行导入脚本和贡献数据生成脚本。
