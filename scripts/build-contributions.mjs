@@ -27,6 +27,11 @@ const gitVersions = (file) => {
     return versions.map(({ date }) => date);
   } catch { return []; }
 };
+const latestCommitAt = (file) => {
+  try {
+    return execFileSync('git', ['log', '-1', '--format=%cI', '--follow', '--', join('content', file)], { encoding: 'utf8' }).trim();
+  } catch { return ''; }
+};
 const isDirty = (file) => { for (const args of [['diff', '--quiet', '--'], ['diff', '--cached', '--quiet', '--']]) { try { execFileSync('git', [...args, join('content', file)]); } catch (error) { if (error.status === 1) return true; } } return false; };
 const hasSemanticWorkingChange = (file, source) => {
   try {
@@ -35,5 +40,5 @@ const hasSemanticWorkingChange = (file, source) => {
   } catch { return false; }
 };
 const localDate = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-for (const file of files) { const source = readFileSync(join(contentDir, file), 'utf8'); const title = articleTitle(source, file); const excerpt = (source.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('#') && !line.startsWith('![') && !/^https?:\/\//i.test(line.trim())) || '').trim(); const frontmatterDate = (source.match(/^date:\s*(\d{4}-\d{2}-\d{2})$/m) || [])[1]; const stat = statSync(join(contentDir, file)); const dates = new Set(gitVersions(file)); if (isDirty(file) && hasSemanticWorkingChange(file, source)) dates.add(localDate(stat.mtime)); const fallbackDate = articleDate(file) || localDate(stat.mtime); const contributionDates = frontmatterDate ? [frontmatterDate] : (dates.size ? [...dates] : [fallbackDate]); const url = articlePage(file); for (const date of contributionDates) { const year = date.slice(0, 4); years[year] ||= { days: {}, entries: [] }; years[year].days[date] = (years[year].days[date] || 0) + 1; years[year].entries.push({ date, title, excerpt, url }); } }
-for (const value of Object.values(years)) value.entries.sort((a, b) => b.date.localeCompare(a.date)); mkdirSync(join(root, 'data'), { recursive: true }); writeFileSync(join(root, 'data', 'contributions.json'), JSON.stringify({ generatedAt: new Date().toISOString(), years }, null, 2));
+for (const file of files) { const source = readFileSync(join(contentDir, file), 'utf8'); const title = articleTitle(source, file); const excerpt = (source.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('#') && !line.startsWith('![') && !/^https?:\/\//i.test(line.trim())) || '').trim(); const frontmatterDate = (source.match(/^date:\s*(\d{4}-\d{2}-\d{2})$/m) || [])[1]; const stat = statSync(join(contentDir, file)); const dates = new Set(gitVersions(file)); if (isDirty(file) && hasSemanticWorkingChange(file, source)) dates.add(localDate(stat.mtime)); const fallbackDate = articleDate(file) || localDate(stat.mtime); const contributionDates = frontmatterDate ? [frontmatterDate] : (dates.size ? [...dates] : [fallbackDate]); const url = articlePage(file); const submittedAt = latestCommitAt(file); for (const date of contributionDates) { const year = date.slice(0, 4); years[year] ||= { days: {}, entries: [] }; years[year].days[date] = (years[year].days[date] || 0) + 1; years[year].entries.push({ date, submittedAt, title, excerpt, url }); } }
+for (const value of Object.values(years)) value.entries.sort((a, b) => b.date.localeCompare(a.date) || b.submittedAt.localeCompare(a.submittedAt)); mkdirSync(join(root, 'data'), { recursive: true }); writeFileSync(join(root, 'data', 'contributions.json'), JSON.stringify({ generatedAt: new Date().toISOString(), years }, null, 2));

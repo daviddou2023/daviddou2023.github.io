@@ -104,7 +104,7 @@ if (heatmap) {
       }
       document.querySelector('#contribution-count').textContent = `${entries.length} contributions in ${selectedYear}`;
       if (summary) summary.innerHTML = `${selectedYear} 年发布了 ${entries.length} 篇文章<br>每一次记录，都是一次整理。`;
-      document.querySelector('#contribution-history-list').innerHTML = entries.length ? entries.slice().sort((a, b) => b.date.localeCompare(a.date)).map((entry) => `<a class="history-entry" href="${escapeHtml(entry.url || '#')}"><time>${escapeHtml(entry.date)}</time><span>${escapeHtml(entry.title)}</span><b>↗</b></a>`).join('') : '<p class="history-empty">这一年还没有文章记录。</p>';
+      document.querySelector('#contribution-history-list').innerHTML = entries.length ? entries.slice().sort((a, b) => b.date.localeCompare(a.date) || (b.submittedAt || '').localeCompare(a.submittedAt || '')).map((entry) => `<a class="history-entry" href="${escapeHtml(entry.url || '#')}"><time>${escapeHtml(entry.date)}</time><span>${escapeHtml(entry.title)}</span><b>↗</b></a>`).join('') : '<p class="history-empty">这一年还没有文章记录。</p>';
       [...yearList.querySelectorAll('button')].forEach((button) => button.classList.toggle('active', button.dataset.year === selectedYear));
     };
     yearList.innerHTML = years.map((year) => `<button type="button" data-year="${year}">${year}</button>`).join('');

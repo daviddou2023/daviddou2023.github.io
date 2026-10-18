@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T15:45:28.114Z",
+  "generatedAt": "2026-10-18T15:57:13.918Z",
   "years": {
     "2026": {
       "days": {
@@ -9,54 +9,63 @@
       "entries": [
         {
           "date": "2026-10-18",
+          "submittedAt": "2026-10-18T23:41:19+08:00",
+          "title": "网络与通信（261015）",
+          "excerpt": "自从1991年诞生以来，HTTP（超文本传输协议）便成为了互联网的通用语言。作为一种无状态，基于“请求-响应”模式的应用层协议，它构筑了现代WEB通信的基石。",
+          "url": "articals/article-2f80f6d3a2.html"
+        },
+        {
+          "date": "2026-10-18",
+          "submittedAt": "2026-10-18T10:19:52+08:00",
           "title": "二、AI Agents Engineering（260817）",
           "excerpt": "这些复杂的任务通常需要获取LLM知识库之外的外部工具和信息。",
           "url": "articals/article-30752cf4c5.html"
         },
         {
           "date": "2026-10-18",
+          "submittedAt": "2026-10-18T10:19:52+08:00",
           "title": "三、Context Engineering（260818）",
           "excerpt": "---",
           "url": "articals/article-0235daef54.html"
         },
         {
           "date": "2026-10-18",
+          "submittedAt": "2026-10-18T10:19:52+08:00",
           "title": "✅️四、Harness Engineering（260821-0823）",
           "excerpt": "---",
           "url": "articals/article-e5279e9b4e.html"
         },
         {
           "date": "2026-10-18",
+          "submittedAt": "2026-10-18T09:55:06+08:00",
           "title": "Prompt Engineering（260815）",
           "excerpt": "用于和模型交互的提示词不会包含任何例子或者演示。Instruction tuning被用来改进zero-shot learning，RLHF（基于人类反馈的强化学习）被用来扩展Instruction tuning，其中模型与人类偏好一致。",
           "url": "articals/article-5df0f1f665.html"
         },
         {
           "date": "2026-10-18",
+          "submittedAt": "2026-10-18T09:16:15+08:00",
           "title": "This is AGI: Sequoia AI Ascent 2026 Keynote（20260725）",
           "excerpt": "第一个故事：rewired value",
           "url": "articals/article-0195f32262.html"
         },
         {
           "date": "2026-10-18",
+          "submittedAt": "2026-10-18T09:16:15+08:00",
           "title": "爬虫之懒加载（20260722）",
           "excerpt": "懒加载也叫延迟加载，指的是在长网页中延迟加载图像，是一种优化网页性能的方式。和预加载相反，在用户滚动到它们之前，可视区域外的图像不会提前加载。某种情况下可以帮助减少服务器负载，经常使用在图片较多，页面很长的电商网站场景中",
           "url": "articals/article-31388e7788.html"
         },
         {
-          "date": "2026-10-18",
-          "title": "网络与通信（261015）",
-          "excerpt": "自从1991年诞生以来，HTTP（超文本传输协议）便成为了互联网的通用语言。作为一种无状态，基于“请求-响应”模式的应用层协议，它构筑了现代WEB通信的基石。",
-          "url": "articals/article-2f80f6d3a2.html"
-        },
-        {
           "date": "2026-10-17",
+          "submittedAt": "2026-10-18T09:16:15+08:00",
           "title": "AI Agent的架构选型：MCP和Skills的核心区别及应用场景分析（260730）",
           "excerpt": "API 是供开发人员使用的接口，而 MCP 是供 LLM 使用的 API 的接口/包装器",
           "url": "articals/article-ff61bdf19c.html"
         },
         {
           "date": "2026-10-17",
+          "submittedAt": "2026-10-18T09:16:15+08:00",
           "title": "KV cache（261013）",
           "excerpt": "在 LLM的推理过程中，KV Cache是决定吞吐量和时延的核心机制之一。",
           "url": "articals/article.html"
