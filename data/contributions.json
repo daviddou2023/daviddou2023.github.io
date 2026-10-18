@@ -1,9 +1,10 @@
 {
-  "generatedAt": "2026-10-18T01:28:42.574Z",
+  "generatedAt": "2026-10-18T01:53:34.164Z",
   "years": {
     "2026": {
       "days": {
         "2026-10-17": 2,
+        "2026-08-15": 1,
         "2026-10-18": 2
       },
       "entries": [
@@ -30,6 +31,12 @@
           "title": "KV cache（261013）",
           "excerpt": "在 LLM的推理过程中，KV Cache是决定吞吐量和时延的核心机制之一。",
           "url": "article.html"
+        },
+        {
+          "date": "2026-08-15",
+          "title": "Prompt Engineering（260815）",
+          "excerpt": "用于和模型交互的提示词不会包含任何例子或者演示。Instruction tuning被用来改进zero-shot learning，RLHF（基于人类反馈的强化学习）被用来扩展Instruction tuning，其中模型与人类偏好一致。",
+          "url": "article-5df0f1f665.html"
         }
       ]
     }
