@@ -1,14 +1,25 @@
 {
-  "generatedAt": "2026-10-18T02:15:53.085Z",
+  "generatedAt": "2026-10-18T15:40:18.371Z",
   "years": {
     "2026": {
       "days": {
-        "2026-08-17": 1,
+        "2026-10-18": 6,
         "2026-10-17": 2,
-        "2026-08-18": 1,
-        "2026-10-18": 4
+        "2026-10-15": 1
       },
       "entries": [
+        {
+          "date": "2026-10-18",
+          "title": "二、AI Agents Engineering（260817）",
+          "excerpt": "这些复杂的任务通常需要获取LLM知识库之外的外部工具和信息。",
+          "url": "articals/article-30752cf4c5.html"
+        },
+        {
+          "date": "2026-10-18",
+          "title": "三、Context Engineering（260818）",
+          "excerpt": "---",
+          "url": "articals/article-0235daef54.html"
+        },
         {
           "date": "2026-10-18",
           "title": "✅️四、Harness Engineering（260821-0823）",
@@ -46,16 +57,10 @@
           "url": "articals/article.html"
         },
         {
-          "date": "2026-08-18",
-          "title": "三、Context Engineering（260818）",
-          "excerpt": "---",
-          "url": "articals/article-0235daef54.html"
-        },
-        {
-          "date": "2026-08-17",
-          "title": "二、AI Agents Engineering（260817）",
-          "excerpt": "这些复杂的任务通常需要获取LLM知识库之外的外部工具和信息。",
-          "url": "articals/article-30752cf4c5.html"
+          "date": "2026-10-15",
+          "title": "网络与通信（261015）",
+          "excerpt": "自从1991年诞生以来，HTTP（超文本传输协议）便成为了互联网的通用语言。作为一种无状态，基于“请求-响应”模式的应用层协议，它构筑了现代WEB通信的基石。",
+          "url": "articals/article-2f80f6d3a2.html"
         }
       ]
     }
