@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, extname, join } from 'node:path';
 import { articleDate, articlePage, articleSlug, articleTitle } from './scripts/article-utils.mjs';
@@ -5,6 +7,7 @@ import { articleDate, articlePage, articleSlug, articleTitle } from './scripts/a
 const root = process.cwd();
 const contentDir = join(root, 'content');
 const imageRoot = join(root, 'assets', 'images');
+const manifestPath = join(root, 'data', 'imported-articles.json');
 const markdownFiles = readdirSync(contentDir).filter((file) => file.toLowerCase().endsWith('.md')).sort();
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const inlineText = (value) => value.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[`*_#>]/g, '').trim();
@@ -13,20 +16,18 @@ const localizeImages = async (file) => {
   const path = join(contentDir, file);
   let markdown = readFileSync(path, 'utf8');
   const directory = join(imageRoot, articleSlug(file));
-  let imageNumber = 0;
   const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
   const matches = [...markdown.matchAll(imagePattern)];
-  for (const match of matches) {
+  for (const [index, match] of matches.entries()) {
     const source = match[2];
     if (!/^https?:\/\//i.test(source)) continue;
     mkdirSync(directory, { recursive: true });
-    imageNumber += 1;
     const response = await fetch(source);
     if (!response.ok) throw new Error(`下载图片失败 (${response.status}): ${file}`);
     const type = response.headers.get('content-type') || '';
     const remoteExtension = extname(new URL(source).pathname).toLowerCase();
     const extension = /\.(png|jpe?g|gif|webp|svg)$/.test(remoteExtension) ? remoteExtension : type.includes('jpeg') ? '.jpg' : type.includes('gif') ? '.gif' : type.includes('webp') ? '.webp' : type.includes('svg') ? '.svg' : '.png';
-    const imageName = `image-${String(imageNumber).padStart(2, '0')}${extension}`;
+    const imageName = `image-${String(index + 1).padStart(2, '0')}${extension}`;
     writeFileSync(join(directory, imageName), Buffer.from(await response.arrayBuffer()));
     const replacement = `![${match[1] || '文章配图'}](assets/images/${articleSlug(file)}/${imageName})`;
     markdown = markdown.replace(match[0], replacement);
@@ -45,14 +46,29 @@ const makePage = (file, title, date) => {
 `;
 };
 
+const generatedPages = markdownFiles.filter((file) => existsSync(join(root, articlePage(file))));
+const oldManifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {};
+const knownHashes = oldManifest.articles || Object.fromEntries((oldManifest.files || generatedPages).map((file) => [file, createHash('sha256').update(readFileSync(join(contentDir, file))).digest('hex')]));
+for (const file of generatedPages) knownHashes[file] ||= createHash('sha256').update(readFileSync(join(contentDir, file))).digest('hex');
 const articles = [];
+const importedNow = [];
+const updatedNow = [];
+const currentHashes = {};
 for (const file of markdownFiles) {
-  const markdown = await localizeImages(file);
+  const source = readFileSync(join(contentDir, file), 'utf8');
+  const sourceHash = createHash('sha256').update(source).digest('hex');
+  const isNew = !knownHashes[file];
+  const isChanged = !isNew && knownHashes[file] !== sourceHash;
+  const markdown = isNew || isChanged ? await localizeImages(file) : source;
+  currentHashes[file] = createHash('sha256').update(markdown).digest('hex');
   const title = articleTitle(markdown, file);
   const date = articleDate(file);
   const excerpt = inlineText(markdown.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('#') && !line.startsWith('![') && !/^https?:\/\//i.test(line.trim())) || '');
   const page = articlePage(file);
-  writeFileSync(join(root, page), makePage(file, title, date), 'utf8');
+  if (isNew || isChanged) {
+    writeFileSync(join(root, page), makePage(file, title, date), 'utf8');
+    (isNew ? importedNow : updatedNow).push(file);
+  }
   articles.push({ file, title, date, excerpt, page });
 }
 
@@ -63,6 +79,16 @@ const sectionPattern = /(<section class="container article-list">)[\s\S]*?(<\/se
 if (!sectionPattern.test(blog)) throw new Error('blog.html 中找不到 article-list 区块');
 blog = blog.replace(sectionPattern, `$1\n${rows}\n$2`);
 writeFileSync(blogPath, blog, 'utf8');
+mkdirSync(join(root, 'data'), { recursive: true });
+writeFileSync(manifestPath, JSON.stringify({ articles: currentHashes }, null, 2), 'utf8');
+execFileSync(process.execPath, [join(root, 'scripts', 'build-contributions.mjs')], { stdio: 'inherit' });
 
-console.log(`已处理 ${articles.length} 篇 Markdown 文章：`);
-for (const article of articles) console.log(`- ${article.title} -> ${article.page}`);
+console.log(`新处理 ${importedNow.length} 篇 Markdown 文章；已有文章 ${articles.length - importedNow.length} 篇仅用于生成列表。`);
+for (const file of importedNow) {
+  const article = articles.find((entry) => entry.file === file);
+  console.log(`- ${article.title} -> ${article.page}`);
+}
+for (const file of updatedNow) {
+  const article = articles.find((entry) => entry.file === file);
+  console.log(`- 更新 ${article.title} -> ${article.page}`);
+}

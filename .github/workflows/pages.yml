@@ -23,8 +23,6 @@ jobs:
           fetch-depth: 0
       - name: Import Markdown articles
         run: node import-articles.mjs
-      - name: Build contribution data
-        run: node scripts/build-contributions.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
