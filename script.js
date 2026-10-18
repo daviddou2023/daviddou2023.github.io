@@ -47,6 +47,7 @@ if (heatmap) {
   const updateLatestArticle = (entries) => {
     const latest = entries[0];
     if (!latest) return;
+    const latestUrl = latest.url.startsWith('articals/') ? latest.url : `articals/${latest.url}`;
     const presentations = {
       'article-ai-agent.html': {
         title: 'AI Agent 的架构选型：MCP 和 Skills 的核心区别及应用场景分析',
@@ -61,7 +62,7 @@ if (heatmap) {
         reading: '阅读约 12 分钟'
       }
     };
-    const presentation = presentations[latest.url] || {
+    const presentation = presentations[latest.url] || presentations[latestUrl.replace(/^articals\//, '')] || {
       title: latest.title,
       summary: latest.excerpt || '在这里记录新的技术思考与实践。',
       category: 'TECHNICAL BLOG',
@@ -70,7 +71,7 @@ if (heatmap) {
     const feature = document.querySelector('.feature-band');
     feature.querySelector('h2').textContent = presentation.title;
     feature.querySelector('.muted').textContent = presentation.summary;
-    feature.querySelector('.text-link').href = latest.url;
+    feature.querySelector('.text-link').href = latestUrl;
     feature.querySelector('.eyebrow').textContent = `LATEST ARTICLE · ${presentation.category}`;
     feature.querySelector('.feature-meta strong').textContent = latest.date.replaceAll('-', '.');
     feature.querySelector('.feature-meta span:last-child').textContent = presentation.reading;

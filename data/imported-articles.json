@@ -1,6 +1,9 @@
 {
   "articles": {
+    "AI Agents Engineering（260817）.md": "1f23193e065cec4d151e72474ddf57982c2dd28277c80b2d0e97889ec85bf1ee",
     "AI Agent的架构选型：MCP和Skills的核心区别及应用场景分析（260730）.md": "ceb982ac2f48c75a795a98dce22dec3f0e254d209ed03e5b2ad9aa1b8a0e7cea",
+    "Context Engineering（260818）.md": "ce92c1dda85140d8f2a72b848a25e39b94b1c09ca70ed8d04fe40ecc9b5fab87",
+    "Harness Engineering（260821-0823）.md": "efe420e0f46b6192892cff83add72c635aab0adaa817babfdb5901accffda0ad",
     "Prompt Engineering（260815）.md": "7cce22fd48d867e02cde8eaf22b3b23571bb27e1f121e00ce77728c7d0f1b132",
     "This is AGI_ Sequoia AI Ascent 2026 Keynote（20260725）.md": "5e0156f1c5fa6b78f74948c463015a9309191ad6a0735886100fe63e98e5575c",
     "kv-cache.md": "395fc33d546fe87701c32168aec6a619ad7145349d15c2efd9811d87111471d6",

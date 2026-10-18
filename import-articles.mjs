@@ -41,7 +41,7 @@ const makePage = (file, title, date) => {
   const pageTitle = escapeHtml(title);
   const prettyDate = escapeHtml(dateLabel(date));
   return `<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${pageTitle}"><title>${pageTitle} · 技术博客 · 嘻嘻仙人</title><link rel="stylesheet" href="styles.css"></head>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><base href="../"><meta name="description" content="${pageTitle}"><title>${pageTitle} · 技术博客 · 嘻嘻仙人</title><link rel="stylesheet" href="styles.css"></head>
 <body><header class="site-header"><a class="brand" href="index.html">嘻嘻仙人</a><nav><a href="index.html">首页</a><a class="active" href="blog.html">技术博客</a><a href="notes.html">随笔</a></nav><a class="header-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a></header><main><article class="article-page container"><div class="article-top"><a class="back-link" href="blog.html">← 技术博客</a><span>${prettyDate}</span></div><p class="eyebrow">TECHNICAL BLOG</p><h1>${pageTitle}</h1><div class="article-rule"></div><div id="article-content" class="prose"><p class="loading">正在加载文章内容…</p></div></article></main><footer class="site-footer"><div class="container footer-inner"><span>© 2026 嘻嘻仙人</span><a href="blog.html">返回技术博客 ↑</a></div></footer><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><script>fetch(${JSON.stringify(encodedPath)}).then(r=>r.text()).then(md=>{document.getElementById('article-content').innerHTML=marked.parse(md.replace(/^#.*\\n/,''));}).catch(()=>{document.getElementById('article-content').textContent='文章加载失败，请检查 Markdown 文件是否已发布。';});</script></body></html>
 `;
 };
@@ -65,9 +65,11 @@ for (const file of markdownFiles) {
   const date = articleDate(file);
   const excerpt = inlineText(markdown.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('#') && !line.startsWith('![') && !/^https?:\/\//i.test(line.trim())) || '');
   const page = articlePage(file);
-  if (isNew || isChanged) {
+  const pageNeedsMigration = existsSync(join(root, page)) && !readFileSync(join(root, page), 'utf8').includes('<base href="../">');
+  if (isNew || isChanged || pageNeedsMigration) {
     writeFileSync(join(root, page), makePage(file, title, date), 'utf8');
-    (isNew ? importedNow : updatedNow).push(file);
+    if (isNew) importedNow.push(file);
+    else if (isChanged) updatedNow.push(file);
   }
   articles.push({ file, title, date, excerpt, page });
 }

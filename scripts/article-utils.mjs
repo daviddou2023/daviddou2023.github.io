@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { basename } from 'node:path';
 
 export const articleSlug = (file) => createHash('sha256').update(file).digest('hex').slice(0, 10);
-export const articlePage = (file) => file === 'kv-cache.md' ? 'article.html' : `article-${articleSlug(file)}.html`;
+export const articlePage = (file) => file === 'kv-cache.md' ? 'articals/article.html' : `articals/article-${articleSlug(file)}.html`;
 export const articleTitle = (source, file) => (source.match(/^#\s+(.+)$/m) || [])[1] || basename(file, '.md');
 export const articleDate = (file) => {
   const match = basename(file).match(/[（(](\d{6}|\d{8})[）)](?=\.md$)/);
