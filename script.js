@@ -1,3 +1,43 @@
+const applyTheme = (theme) => document.documentElement.dataset.theme = theme;
+document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="theme.css">');
+const savedTheme = localStorage.getItem('site-theme') || 'light';
+applyTheme(savedTheme);
+const header = document.querySelector('.site-header');
+if (header && !header.querySelector('.theme-toggle')) {
+  const toggle = document.createElement('button');
+  toggle.className = 'theme-toggle';
+  toggle.type = 'button';
+  toggle.setAttribute('aria-label', '切换深色主题');
+  toggle.innerHTML = '<span aria-hidden="true">◐</span><span class="theme-toggle-label">深色</span>';
+  toggle.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(theme);
+    localStorage.setItem('site-theme', theme);
+    toggle.setAttribute('aria-label', theme === 'dark' ? '切换浅色主题' : '切换深色主题');
+    toggle.querySelector('.theme-toggle-label').textContent = theme === 'dark' ? '浅色' : '深色';
+  });
+  header.append(toggle);
+  toggle.querySelector('.theme-toggle-label').textContent = savedTheme === 'dark' ? '浅色' : '深色';
+  toggle.setAttribute('aria-label', savedTheme === 'dark' ? '切换浅色主题' : '切换深色主题');
+}
+const enhanceCodeBlocks = () => {
+  if (window.hljs) document.querySelectorAll('pre code').forEach((block) => window.hljs.highlightElement(block));
+  document.querySelectorAll('pre').forEach((pre) => {
+    if (pre.querySelector('.copy-code')) return;
+    const button = document.createElement('button');
+    button.className = 'copy-code';
+    button.type = 'button';
+    button.textContent = '复制';
+    button.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(pre.querySelector('code')?.innerText || '');
+      button.textContent = '已复制';
+      setTimeout(() => { button.textContent = '复制'; }, 1400);
+    });
+    pre.append(button);
+  });
+};
+window.enhanceCodeBlocks = enhanceCodeBlocks;
+new MutationObserver(() => enhanceCodeBlocks()).observe(document.body, { childList: true, subtree: true });
 document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="contributions.css"><link rel="stylesheet" href="contributions-override.css">');
 
 const heatmap = document.querySelector('.heatmap');

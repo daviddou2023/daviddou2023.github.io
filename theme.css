@@ -1,0 +1,77 @@
+:root {
+  color-scheme: light;
+  --code-bg: #f0efe9;
+  --code-ink: #24231f;
+  --code-border: #d8d7d0;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f2f0e8;
+  --muted: #b5b3aa;
+  --paper: #1d1e1b;
+  --line: #3b3d38;
+  --warm: #292b27;
+  --code-bg: #252723;
+  --code-ink: #f2f0e8;
+  --code-border: #454840;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  padding: 6px 10px;
+  font: 12px 'DM Mono', monospace;
+  cursor: pointer;
+}
+
+.theme-toggle:hover { background: var(--warm); }
+
+.prose pre {
+  position: relative;
+  margin: 28px 0;
+  padding: 20px;
+  overflow: auto;
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  background: var(--code-bg);
+  color: var(--code-ink);
+}
+
+.prose pre code {
+  display: block;
+  color: inherit;
+  background: transparent;
+  padding: 0 64px 0 0;
+  font-size: .9em;
+  line-height: 1.7;
+}
+
+.copy-code {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  background: var(--warm);
+  color: var(--muted);
+  padding: 4px 8px;
+  font: 12px 'DM Mono', monospace;
+  cursor: pointer;
+}
+
+.copy-code:hover { color: var(--ink); }
+
+/* Highlight.js token colors remain readable in both themes. */
+.hljs-comment,.hljs-quote{color:#7b8174}.hljs-keyword,.hljs-selector-tag,.hljs-literal{color:#9b3f77}.hljs-string,.hljs-attr{color:#437b45}.hljs-number,.hljs-symbol{color:#916b28}.hljs-title,.hljs-section,.hljs-type{color:#286b91}.hljs-built_in,.hljs-name{color:#875c28}
+html[data-theme="dark"] .hljs-comment,html[data-theme="dark"] .hljs-quote{color:#9da691}html[data-theme="dark"] .hljs-keyword,html[data-theme="dark"] .hljs-selector-tag,html[data-theme="dark"] .hljs-literal{color:#e59ac6}html[data-theme="dark"] .hljs-string,html[data-theme="dark"] .hljs-attr{color:#a9d69d}html[data-theme="dark"] .hljs-number,html[data-theme="dark"] .hljs-symbol{color:#e4c27b}html[data-theme="dark"] .hljs-title,html[data-theme="dark"] .hljs-section,html[data-theme="dark"] .hljs-type{color:#9ed7f4}html[data-theme="dark"] .hljs-built_in,html[data-theme="dark"] .hljs-name{color:#e2b887}
+
+@media (max-width: 700px) {
+  .theme-toggle-label { display: none; }
+  .theme-toggle { padding: 6px 8px; }
+}

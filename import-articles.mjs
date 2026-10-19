@@ -65,9 +65,10 @@ for (const file of markdownFiles) {
   const date = articleDate(file);
   const excerpt = inlineText(markdown.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('#') && !line.startsWith('![') && !/^https?:\/\//i.test(line.trim())) || '');
   const page = articlePage(file);
-  const pageNeedsMigration = existsSync(join(root, page)) && (!readFileSync(join(root, page), 'utf8').includes('<base href="../">') || !readFileSync(join(root, page), 'utf8').includes('article-tables.css'));
+  const pageNeedsMigration = existsSync(join(root, page)) && (!readFileSync(join(root, page), 'utf8').includes('<base href="../">') || !readFileSync(join(root, page), 'utf8').includes('article-tables.css') || !readFileSync(join(root, page), 'utf8').includes('highlight.js') || !readFileSync(join(root, page), 'utf8').includes('script.js'));
   if (isNew || isChanged || pageNeedsMigration) {
-    writeFileSync(join(root, page), makePage(file, title, date), 'utf8');
+    const pageHtml = makePage(file, title, date).replace('</script></body>', '</script><script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/common.min.js"></script><script src="script.js"></script></body>');
+    writeFileSync(join(root, page), pageHtml, 'utf8');
     if (isNew) importedNow.push(file);
     else if (isChanged) updatedNow.push(file);
   }
