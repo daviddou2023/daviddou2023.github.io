@@ -2,6 +2,7 @@
   "articles": {
     "AI Agents Engineering（260817）.md": "1f23193e065cec4d151e72474ddf57982c2dd28277c80b2d0e97889ec85bf1ee",
     "AI Agent的架构选型：MCP和Skills的核心区别及应用场景分析（260730）.md": "ceb982ac2f48c75a795a98dce22dec3f0e254d209ed03e5b2ad9aa1b8a0e7cea",
+    "Anthropic：How we built our multi-agent research system（2610）.md": "3249cbbac6be6d9653a580cf63eb24c5aeaa72c57339549098bd79811adaa216",
     "Context Engineering（260818）.md": "ce92c1dda85140d8f2a72b848a25e39b94b1c09ca70ed8d04fe40ecc9b5fab87",
     "Harness Engineering（260821-0823）.md": "efe420e0f46b6192892cff83add72c635aab0adaa817babfdb5901accffda0ad",
     "Pi Agent理论篇（260909）.md": "e02e4887f1d1c61e9b0810282068cd7892fb500c5fd6ed4897578cf37e657e03",

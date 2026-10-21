@@ -1,28 +1,42 @@
 {
-  "generatedAt": "2026-10-20T12:52:38.749Z",
+  "generatedAt": "2026-10-21T12:57:05.076Z",
   "years": {
     "2026": {
       "days": {
         "2026-10-18": 7,
         "2026-10-17": 2,
+        "2026-10-21": 1,
         "2026-10-19": 2,
-        "2026-10-20": 2,
-        "2026-10-10": 1
+        "2026-10-20": 3
       },
       "entries": [
         {
-          "date": "2026-10-20",
+          "date": "2026-10-21",
           "submittedAt": "",
+          "title": "Anthropic：How we built our multi-agent research system（2610）",
+          "excerpt": "本文中所涉及到的agent指的是在一个代码循环（while(){ }）中自主选择和使用工具（Tools）的大语言模型。",
+          "url": "articals/article-2986a612a3.html"
+        },
+        {
+          "date": "2026-10-20",
+          "submittedAt": "2026-10-20T21:05:19+08:00",
           "title": "✅️Kafka与RabbitMQ队列（261020）",
           "excerpt": "kafka是一个分布式、高吞吐量、高扩展性的消息队列系统。主要应用在日志收集系统和消息系统，相信大家之前也听说过其他的消息队列中间件，比如RabbitMQ、AcitveMQ，其实kafka就是这么一个东西，也可以叫做KafkaMQ。总之，Kafka比其他消息队列要好一点，优点也比较多，稳定性和效率都比较高。",
           "url": "articals/article-3c71e48551.html"
         },
         {
           "date": "2026-10-20",
-          "submittedAt": "",
+          "submittedAt": "2026-10-20T21:05:19+08:00",
           "title": "✅️块存储和对象存储（261020）",
           "excerpt": "买服务器时，会看到两种存储选项：一种是服务器自带的块存储——系统盘和数据盘，另一种是单独购买的对象存储（阿里云的叫OSS,AWS的叫S3，腾讯云的叫COS）。块存储和对象存储都能存储数据，但是底层原理完全不同，适用的场景也完全不同。",
           "url": "articals/article-08a1c177ac.html"
+        },
+        {
+          "date": "2026-10-20",
+          "submittedAt": "2026-10-20T21:05:19+08:00",
+          "title": "✅️模型调用令牌桶限流策略（261010）",
+          "excerpt": "在调用LLM API时候，服务提供方会设置请求频率限制，以防止资源滥用。若未妥善处理限流策略，可能导致请求被拒绝或者IP被临时封禁。",
+          "url": "articals/article-0fafe54bec.html"
         },
         {
           "date": "2026-10-19",
@@ -100,13 +114,6 @@
           "title": "KV cache（261013）",
           "excerpt": "在 LLM的推理过程中，KV Cache是决定吞吐量和时延的核心机制之一。",
           "url": "articals/article.html"
-        },
-        {
-          "date": "2026-10-10",
-          "submittedAt": "",
-          "title": "✅️模型调用令牌桶限流策略（261010）",
-          "excerpt": "在调用LLM API时候，服务提供方会设置请求频率限制，以防止资源滥用。若未妥善处理限流策略，可能导致请求被拒绝或者IP被临时封禁。",
-          "url": "articals/article-0fafe54bec.html"
         }
       ]
     }
