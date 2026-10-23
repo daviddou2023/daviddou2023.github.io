@@ -1,18 +1,26 @@
 {
-  "generatedAt": "2026-10-21T12:57:05.076Z",
+  "generatedAt": "2026-10-23T07:14:00.421Z",
   "years": {
     "2026": {
       "days": {
         "2026-10-18": 7,
         "2026-10-17": 2,
         "2026-10-21": 1,
+        "2026-10-23": 1,
         "2026-10-19": 2,
         "2026-10-20": 3
       },
       "entries": [
         {
-          "date": "2026-10-21",
+          "date": "2026-10-23",
           "submittedAt": "",
+          "title": "DNS查询与服务器（261023）",
+          "excerpt": "DNS解析是互联网访问的第一步，无论是使用笔记本浏览器访问网络还是打开手机APP的时候，访问网络资源的第一步必然要经过DNS解析流程。",
+          "url": "articals/article-f68c07f064.html"
+        },
+        {
+          "date": "2026-10-21",
+          "submittedAt": "2026-10-21T20:57:44+08:00",
           "title": "Anthropic：How we built our multi-agent research system（2610）",
           "excerpt": "本文中所涉及到的agent指的是在一个代码循环（while(){ }）中自主选择和使用工具（Tools）的大语言模型。",
           "url": "articals/article-2986a612a3.html"
