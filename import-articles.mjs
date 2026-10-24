@@ -85,6 +85,7 @@ writeFileSync(blogPath, blog, 'utf8');
 mkdirSync(join(root, 'data'), { recursive: true });
 writeFileSync(manifestPath, JSON.stringify({ articles: currentHashes }, null, 2), 'utf8');
 execFileSync(process.execPath, [join(root, 'scripts', 'build-contributions.mjs')], { stdio: 'inherit' });
+execFileSync(process.execPath, [join(root, 'scripts', 'build-search-index.mjs')], { stdio: 'inherit' });
 
 console.log(`新处理 ${importedNow.length} 篇 Markdown 文章；已有文章 ${articles.length - importedNow.length} 篇仅用于生成列表。`);
 for (const file of importedNow) {

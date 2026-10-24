@@ -1,5 +1,9 @@
 const applyTheme = (theme) => document.documentElement.dataset.theme = theme;
 document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="theme.css">');
+const searchScript = document.createElement('script');
+searchScript.src = 'search.js';
+searchScript.defer = true;
+document.head.append(searchScript);
 const savedTheme = localStorage.getItem('site-theme') || 'light';
 applyTheme(savedTheme);
 const header = document.querySelector('.site-header');
