@@ -65,9 +65,13 @@ for (const file of markdownFiles) {
   const date = articleDate(file);
   const excerpt = inlineText(markdown.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('#') && !line.startsWith('![') && !/^https?:\/\//i.test(line.trim())) || '');
   const page = articlePage(file);
-  const pageNeedsMigration = existsSync(join(root, page)) && (!readFileSync(join(root, page), 'utf8').includes('<base href="../">') || !readFileSync(join(root, page), 'utf8').includes('article-tables.css') || !readFileSync(join(root, page), 'utf8').includes('highlight.js') || !readFileSync(join(root, page), 'utf8').includes('script.js'));
+  const pageNeedsMigration = existsSync(join(root, page)) && (!readFileSync(join(root, page), 'utf8').includes('<base href="../">') || !readFileSync(join(root, page), 'utf8').includes('article-tables.css') || !readFileSync(join(root, page), 'utf8').includes('highlight.js') || !readFileSync(join(root, page), 'utf8').includes('script.js') || !readFileSync(join(root, page), 'utf8').includes('article-toc.css') || !readFileSync(join(root, page), 'utf8').includes('article-toc.js') || !readFileSync(join(root, page), 'utf8').includes('aria-controls="article-toc-panel"'));
   if (isNew || isChanged || pageNeedsMigration) {
-    const pageHtml = makePage(file, title, date).replace('</script></body>', '</script><script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/common.min.js"></script><script src="script.js"></script></body>');
+    const pageHtml = makePage(file, title, date)
+      .replace('</head>', '<link rel="stylesheet" href="article-toc.css"></head>')
+      .replace('<div class="article-rule"></div><div id="article-content" class="prose">', '<div class="article-rule"></div><div class="article-layout"><aside class="article-toc" aria-label="文章目录"><button class="article-toc-toggle" type="button" aria-expanded="true" aria-controls="article-toc-panel"><span class="article-toc-toggle-label">文章目录</span><span aria-hidden="true">⌄</span></button><div class="article-toc-panel" id="article-toc-panel"><p class="article-toc-title">目录</p><nav class="article-toc-list"></nav></div></aside><div id="article-content" class="prose">')
+      .replace('</div></article></main>', '</div></div></article></main>')
+      .replace('</script></body>', '</script><script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/common.min.js"></script><script src="script.js"></script><script src="article-toc.js"></script></body>');
     writeFileSync(join(root, page), pageHtml, 'utf8');
     if (isNew) importedNow.push(file);
     else if (isChanged) updatedNow.push(file);

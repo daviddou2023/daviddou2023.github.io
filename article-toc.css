@@ -1,0 +1,55 @@
+.article-page { max-width: 1180px; }
+
+.article-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 760px);
+  gap: 44px;
+  align-items: start;
+}
+
+.article-toc {
+  position: sticky;
+  top: 24px;
+  min-width: 0;
+  color: var(--muted);
+}
+
+.article-toc-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 0 0 10px;
+  font: 500 14px 'Noto Sans SC', sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.article-toc-toggle[aria-expanded="false"] > span:last-child { transform: rotate(-90deg); }
+.article-toc-toggle > span:last-child { transition: transform .18s ease; }
+.article-toc-title { margin: 0 0 10px; font: 11px 'DM Mono', monospace; color: var(--muted); text-transform: uppercase; }
+.article-toc-list { display: grid; gap: 2px; max-height: calc(100vh - 100px); overflow: auto; }
+.article-toc-link { display: block; border-left: 2px solid transparent; padding: 5px 8px; color: var(--muted); font-size: 12px; line-height: 1.5; text-decoration: none; }
+.article-toc-link:hover { color: var(--ink); }
+.article-toc-link.is-active { border-left-color: var(--ink); color: var(--ink); background: var(--warm); }
+.article-toc-link[aria-current="location"] { font-weight: 600; }
+.article-toc.is-collapsed .article-toc-panel { display: none; }
+.article-toc-empty { margin: 0; color: var(--muted); font-size: 12px; }
+.prose :is(h2,h3,h4,h5,h6)[id] { scroll-margin-top: 28px; transition: background-color .2s ease; }
+.prose :is(h2,h3,h4,h5,h6).toc-current { background: var(--warm); box-shadow: 0 0 0 6px var(--warm); }
+
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 28px; }
+}
+
+@media (max-width: 700px) {
+  .article-layout { display: block; }
+  .article-toc { position: relative; top: auto; margin: 0 0 22px; }
+  .article-toc-toggle { width: auto; min-width: 140px; gap: 24px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 11px; background: var(--paper); }
+  .article-toc-panel { position: absolute; z-index: 5; top: calc(100% + 6px); left: 0; width: min(360px, calc(100vw - 32px)); padding: 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); box-shadow: 0 10px 28px rgb(0 0 0 / 12%); }
+  .article-toc-list { max-height: min(55vh, 420px); }
+  .article-toc.is-collapsed .article-toc-panel { display: none; }
+}
