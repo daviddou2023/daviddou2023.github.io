@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T14:57:44.637Z",
+  "generatedAt": "2026-10-29T09:27:54.360Z",
   "years": {
     "2026": {
       "days": {
@@ -9,24 +9,32 @@
         "2026-10-26": 1,
         "2026-10-27": 2,
         "2026-10-23": 2,
+        "2026-10-29": 1,
         "2026-10-19": 2,
         "2026-10-20": 3,
         "2026-10-25": 1
       },
       "entries": [
         {
+          "date": "2026-10-29",
+          "submittedAt": "",
+          "title": "JEV（261029）",
+          "excerpt": "在通用大模型盛行的今天，很多时候一些对延迟和响应速度极度敏感的任务大模型是无法胜任的，和llm无法避免概率模型本质造成的幻觉一样，大模型逐字做自回归生成的本质摆在那里，延迟很难压缩到极致。",
+          "url": "articals/article-d6b0cdeb17.html"
+        },
+        {
+          "date": "2026-10-27",
+          "submittedAt": "2026-10-27T23:01:09+08:00",
+          "title": "deep Research（261027）",
+          "excerpt": "OpenAI 在 2024 年 9 月发布的 `o1-preview`，它引入了推理时计算（test-time compute）的概念，并逐渐改变了行业观点。推理时计算指的是在推理阶段（LLM 生成输出的阶段）使用更多计算资源，而不是在预训练或后训练阶段。众所周知的例子包括思维链（Chain-of-Thought，CoT）推理和 [`\"Wait\"`](https://github.com/simplescaling/s1?tab=readme-ov-file#vllm-with-budget-forcing)[ 注入](https://github.com/simplescaling/s1?tab=readme-ov-file#vllm-with-budget-forcing)（即预算强制），这使模型能够进行更广泛的内部深思熟虑，比如评估多个潜在答案、进行更深入的规划，并在得出最终回答之前进行自我反思。",
+          "url": "articals/article-bf07542214.html"
+        },
+        {
           "date": "2026-10-27",
           "submittedAt": "2026-10-27T17:07:08+08:00",
           "title": "Deferred MCP Tools（261027）",
           "excerpt": "Deferred MCP Tools（延迟加载的 MCP 工具）是一种将工具可见性与可调用性分离的上下文管理策略：模型默认只看到工具名或极简描述，完整 Schema 仅在任务需要时通过搜索或发现流程动态注入。它的核心价值不在于单纯节省 Token，而在于让 Agent 在连接数百甚至上千个工具时，不会因为上下文被无关定义塞满而丧失判断力。",
           "url": "articals/article-e75ac02a5e.html"
-        },
-        {
-          "date": "2026-10-27",
-          "submittedAt": "",
-          "title": "deep Research（261027）",
-          "excerpt": "OpenAI 在 2024 年 9 月发布的 `o1-preview`，它引入了推理时计算（test-time compute）的概念，并逐渐改变了行业观点。推理时计算指的是在推理阶段（LLM 生成输出的阶段）使用更多计算资源，而不是在预训练或后训练阶段。众所周知的例子包括思维链（Chain-of-Thought，CoT）推理和 [`\"Wait\"`](https://github.com/simplescaling/s1?tab=readme-ov-file#vllm-with-budget-forcing)[ 注入](https://github.com/simplescaling/s1?tab=readme-ov-file#vllm-with-budget-forcing)（即预算强制），这使模型能够进行更广泛的内部深思熟虑，比如评估多个潜在答案、进行更深入的规划，并在得出最终回答之前进行自我反思。",
-          "url": "articals/article-bf07542214.html"
         },
         {
           "date": "2026-10-26",
