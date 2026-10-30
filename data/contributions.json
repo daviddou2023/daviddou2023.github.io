@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T09:27:54.360Z",
+  "generatedAt": "2026-10-30T07:18:07.677Z",
   "years": {
     "2026": {
       "days": {
@@ -11,13 +11,21 @@
         "2026-10-23": 2,
         "2026-10-29": 1,
         "2026-10-19": 2,
+        "2026-10-30": 1,
         "2026-10-20": 3,
         "2026-10-25": 1
       },
       "entries": [
         {
-          "date": "2026-10-29",
+          "date": "2026-10-30",
           "submittedAt": "",
+          "title": "SDD规范开发（261030）",
+          "excerpt": "Specification-Driven Development（规范驱动开发） 是一种[软件开发方法](https://zhida.zhihu.com/search?content_id=266441104&content_type=Article&match_order=1&q=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3OTM1MTcwNjgsInEiOiLova_ku7blvIDlj5Hmlrnms5UiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoyNjY0NDExMDQsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.ycPJvcZwjGLFPGeagPuz5nercqJSW63oPw2TudhFKR8&zhida_source=entity)，它强调在编写任何实际代码之前，必须首先编写一份详尽、精确、可执行的规范。这份规范是开发过程的唯一权威来源和主要驱动力。",
+          "url": "articals/article-4e2616643b.html"
+        },
+        {
+          "date": "2026-10-29",
+          "submittedAt": "2026-10-29T17:28:16+08:00",
           "title": "JEV（261029）",
           "excerpt": "在通用大模型盛行的今天，很多时候一些对延迟和响应速度极度敏感的任务大模型是无法胜任的，和llm无法避免概率模型本质造成的幻觉一样，大模型逐字做自回归生成的本质摆在那里，延迟很难压缩到极致。",
           "url": "articals/article-d6b0cdeb17.html"
