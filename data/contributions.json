@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T07:18:07.677Z",
+  "generatedAt": "2026-11-01T14:14:14.551Z",
   "years": {
     "2026": {
       "days": {
@@ -13,12 +13,28 @@
         "2026-10-19": 2,
         "2026-10-30": 1,
         "2026-10-20": 3,
-        "2026-10-25": 1
+        "2026-11-01": 1,
+        "2026-10-25": 1,
+        "2026-10-31": 1
       },
       "entries": [
         {
-          "date": "2026-10-30",
+          "date": "2026-11-01",
           "submittedAt": "",
+          "title": "从Transformer和Attention机制到LLM（261101）",
+          "excerpt": "自从Transformer架构横空出世，到LLM蓬勃发展，我们意识到Transformer是LLM得以发展的驱动力之一，那么Transformer是如何为LLM奠定基础的，从Transformer最初用于文本翻译到后来用于大模型文本生成，这其中又有怎样的不同？本文将从输入文本到下一个 Token，解析LLM生成文本的全流程，以及这其中涉及的Transformer架构。",
+          "url": "articals/article-fab9063b3f.html"
+        },
+        {
+          "date": "2026-10-31",
+          "submittedAt": "2026-10-31T18:12:25+08:00",
+          "title": "缓存命中（261025）",
+          "excerpt": "> 调用大模型API的返回值里面疆场会出现 cache_read_input_tokens 这类字段。这其中藏着一条捷径，既能够成倍降低延迟，又能显著节省成本，这条捷径就是缓存命中",
+          "url": "articals/article-73e6ae28fb.html"
+        },
+        {
+          "date": "2026-10-30",
+          "submittedAt": "2026-10-30T15:25:43+08:00",
           "title": "SDD规范开发（261030）",
           "excerpt": "Specification-Driven Development（规范驱动开发） 是一种[软件开发方法](https://zhida.zhihu.com/search?content_id=266441104&content_type=Article&match_order=1&q=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3OTM1MTcwNjgsInEiOiLova_ku7blvIDlj5Hmlrnms5UiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoyNjY0NDExMDQsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.ycPJvcZwjGLFPGeagPuz5nercqJSW63oPw2TudhFKR8&zhida_source=entity)，它强调在编写任何实际代码之前，必须首先编写一份详尽、精确、可执行的规范。这份规范是开发过程的唯一权威来源和主要驱动力。",
           "url": "articals/article-4e2616643b.html"
@@ -53,7 +69,7 @@
         },
         {
           "date": "2026-10-25",
-          "submittedAt": "2026-10-25T23:34:55+08:00",
+          "submittedAt": "2026-10-31T18:12:25+08:00",
           "title": "缓存命中（261025）",
           "excerpt": "> 调用大模型API的返回值里面疆场会出现 cache_read_input_tokens 这类字段。这其中藏着一条捷径，既能够成倍降低延迟，又能显著节省成本，这条捷径就是缓存命中",
           "url": "articals/article-73e6ae28fb.html"
