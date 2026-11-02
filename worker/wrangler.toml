@@ -1,0 +1,11 @@
+name = "xixi-site-counter"
+main = "index.mjs"
+compatibility_date = "2026-11-02"
+
+[vars]
+SITE_ORIGIN = "https://daviddou2023.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "xixi-site-counter"
+database_id = "6d08e0b4-bd87-4aec-92ad-ad689ff8448e"

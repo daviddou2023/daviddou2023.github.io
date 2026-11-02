@@ -1,4 +1,9 @@
 const applyTheme = (theme) => document.documentElement.dataset.theme = theme;
+document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="engagement.css">');
+const engagementScript = document.createElement('script');
+engagementScript.src = 'engagement.js';
+engagementScript.defer = true;
+document.head.append(engagementScript);
 document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="theme.css">');
 const searchScript = document.createElement('script');
 searchScript.src = 'search.js';
