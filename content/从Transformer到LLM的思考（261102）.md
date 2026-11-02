@@ -1,0 +1,28 @@
+# 从Transformer到LLM的思考（261102）
+
+曾几何时，我脑海中有了这样一个认知“Transformer模型是LLM的基础”，但是奇怪的是，我似乎并不知道这个认知从何而来，恰又读到了rubber duck的思考方法，借此机会进行梳理。
+
+首先需要明确一个逻辑上的误区，Transformer并不是为LLM而量身定制的，只是人们从Transformer的架构中发现了适合作为LLM文本生成的部分，进而进行开发与扩展。在时间上，Transfomer是谷歌于2017年提出的，Transformer模型最大的亮点就是摒弃了以往RNN，CNN的架构，而是使用了self-attention,从而实现更高效的并行计算，并有效解决了长距离依赖问题（每个token都可以与序列中其他token计算注意力计算）。
+
+而LLM的兴起则是2020年openAI发布的GPT-3（Generative Pre-trained Transformer 3），其中GPT-3 使用的是decoder-only架构，LLM可以通过自回归推理由当前的token输出下一个token，循环往复。
+
+以上的论述才充分解释了一句轻飘飘的“Transformer模型是LLM的基础”。实际上以上两段的陈述就是通过rubber duck的方法才厘清了其中的时间线和逻辑关系。
+
+至于为什么LLM大多数只用了decoder-only架构而不是encoder-only或者encoder-decoder架构呢？首先注意用词，我说的是大多数，而非全部，像最开始的BERT使用的就是encoder-only架构，T5使用的是encoder-decoder架构，而claude则在decoder-only架构上引入了MoE，deepseek-R1最开始也只是使用了decoder-only，后面也引入了MoE。由此可见，Transformer的架构更像是一种理论基础和范式，开发者们是在其上建高楼，至于是建酒店还是商场则取决于不同模型的设计初衷了。
+
+言归正传，我们先来看下Transformer里面的encoder和decoder都干了什么。Transformer最初是面向Seq2Seq任务开发的，输入序列可以通过Transformer得到输出序列，最典型的应用场景是语言翻译。其中encoder中的自注意力机制使得在抽取某个序列中的词的特征时，能够看到整个序列的上下文，可以和上下文的每个token计算注意力分数，而decoder引入了掩码机制，当前的token只能看到自己和之前的token，看不到后面的token。这天然适合文本生成的场景：根据当前已知内容生成新的内容。
+
+decoder-only在LLM中能够大行其道主要是以下几个优势：
+
+- 训练成本低：decoder-only可以用next token prediction做预训练，不需要构建标记的大量数据集。比如“我喜欢机器学习”，把“学习”遮住，那么任务就是根据“我喜欢机器”去预测“学习”，预训练的目的就是尽可能地让模型学会人类的语言方式进行回答问题，但是模型真的能get到人类的思维方式吗？答案是否定的。模型通过自回归不断地学习预测下一个token,这个过程实际上是在压缩自然语言，把自然语言背后的逻辑与内涵进行参数化。除此之外，当模型规模和数据量足够大时，通过next prediction token训练出的模型会涌现出更强大的能力，在各种上下游任务上的zero-shot和few-shot泛化能力都很好。
+
+- 注意力矩阵满秩：回忆一下，矩阵的秩可以被直观地理解为真正独立的信息通道数或者有效信息的维度。在神经网络中，权重矩阵的作用是将输入特征进行组合变换，从而提取中高级的语义特征。如果权重矩阵是满秩的，则意味着模型能够充分利用所有的特征维度，在同等的参数量下，满秩权重矩阵能够捕捉到更丰富、更细微的上下文联系，因此拥有更强的表达能力和建模能力。在encoder中采用的双向注意力机制（bi-directional attention），每个token都可以看到序列中的其他token,模型在计算时容易产生表征趋同现象，导致注意力矩阵退化为低秩状态;而decoder-only采用的是causal attention，注意力矩阵是下三角矩阵，必然是满秩的，建模能力更强。
+
+- decoder-only的causal attention具有隐式的位置编码功能，打破了transformer的位置不变性，而带有双向attention的模型，如果不带位置编码则对于语序的区分能力较弱。
+
+- decoder-only支持 KV cache，对多轮对话更友好。因为不存在“预测下一个词”的先后顺序，encoder在推理时可以对整个输入序列进行一次性、全并行的计算，可以在一次前向传播中同时算出K和V，不需要随着生成步骤增加而不断追加历史状态的需求，因此，在encoder阶段使用KV cache没有逻辑上的必要性。
+
+
+
+
+

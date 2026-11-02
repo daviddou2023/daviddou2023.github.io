@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T14:14:14.551Z",
+  "generatedAt": "2026-11-02T09:20:59.844Z",
   "years": {
     "2026": {
       "days": {
@@ -8,26 +8,48 @@
         "2026-10-21": 1,
         "2026-10-26": 1,
         "2026-10-27": 2,
+        "2026-11-02": 2,
         "2026-10-23": 2,
         "2026-10-29": 1,
         "2026-10-19": 2,
         "2026-10-30": 1,
         "2026-10-20": 3,
-        "2026-11-01": 1,
+        "2026-11-01": 2,
         "2026-10-25": 1,
         "2026-10-31": 1
       },
       "entries": [
         {
-          "date": "2026-11-01",
+          "date": "2026-11-02",
+          "submittedAt": "2026-10-27T23:01:09+08:00",
+          "title": "deep Research（261027）",
+          "excerpt": "尽管LLMs在通用任务中表现卓越，但是其知识受限于**训练时的静态参数记忆，** 难以应对动态或者专业领域任务。",
+          "url": "articals/article-bf07542214.html"
+        },
+        {
+          "date": "2026-11-02",
           "submittedAt": "",
+          "title": "从Transformer到LLM的思考（261102）",
+          "excerpt": "曾几何时，我脑海中有了这样一个认知“Transformer模型是LLM的基础”，但是奇怪的是，我似乎并不知道这个认知从何而来，恰又读到了rubber duck的思考方法，借此机会进行梳理。",
+          "url": "articals/article-2e90df2780.html"
+        },
+        {
+          "date": "2026-11-01",
+          "submittedAt": "2026-11-01T22:14:39+08:00",
           "title": "从Transformer和Attention机制到LLM（261101）",
           "excerpt": "自从Transformer架构横空出世，到LLM蓬勃发展，我们意识到Transformer是LLM得以发展的驱动力之一，那么Transformer是如何为LLM奠定基础的，从Transformer最初用于文本翻译到后来用于大模型文本生成，这其中又有怎样的不同？本文将从输入文本到下一个 Token，解析LLM生成文本的全流程，以及这其中涉及的Transformer架构。",
           "url": "articals/article-fab9063b3f.html"
         },
         {
+          "date": "2026-11-01",
+          "submittedAt": "2026-11-01T22:14:39+08:00",
+          "title": "缓存命中（261025）",
+          "excerpt": "> 调用大模型API的返回值里面疆场会出现 cache_read_input_tokens 这类字段。这其中藏着一条捷径，既能够成倍降低延迟，又能显著节省成本，这条捷径就是缓存命中",
+          "url": "articals/article-73e6ae28fb.html"
+        },
+        {
           "date": "2026-10-31",
-          "submittedAt": "2026-10-31T18:12:25+08:00",
+          "submittedAt": "2026-11-01T22:14:39+08:00",
           "title": "缓存命中（261025）",
           "excerpt": "> 调用大模型API的返回值里面疆场会出现 cache_read_input_tokens 这类字段。这其中藏着一条捷径，既能够成倍降低延迟，又能显著节省成本，这条捷径就是缓存命中",
           "url": "articals/article-73e6ae28fb.html"
@@ -50,7 +72,7 @@
           "date": "2026-10-27",
           "submittedAt": "2026-10-27T23:01:09+08:00",
           "title": "deep Research（261027）",
-          "excerpt": "OpenAI 在 2024 年 9 月发布的 `o1-preview`，它引入了推理时计算（test-time compute）的概念，并逐渐改变了行业观点。推理时计算指的是在推理阶段（LLM 生成输出的阶段）使用更多计算资源，而不是在预训练或后训练阶段。众所周知的例子包括思维链（Chain-of-Thought，CoT）推理和 [`\"Wait\"`](https://github.com/simplescaling/s1?tab=readme-ov-file#vllm-with-budget-forcing)[ 注入](https://github.com/simplescaling/s1?tab=readme-ov-file#vllm-with-budget-forcing)（即预算强制），这使模型能够进行更广泛的内部深思熟虑，比如评估多个潜在答案、进行更深入的规划，并在得出最终回答之前进行自我反思。",
+          "excerpt": "尽管LLMs在通用任务中表现卓越，但是其知识受限于**训练时的静态参数记忆，** 难以应对动态或者专业领域任务。",
           "url": "articals/article-bf07542214.html"
         },
         {
@@ -69,7 +91,7 @@
         },
         {
           "date": "2026-10-25",
-          "submittedAt": "2026-10-31T18:12:25+08:00",
+          "submittedAt": "2026-11-01T22:14:39+08:00",
           "title": "缓存命中（261025）",
           "excerpt": "> 调用大模型API的返回值里面疆场会出现 cache_read_input_tokens 这类字段。这其中藏着一条捷径，既能够成倍降低延迟，又能显著节省成本，这条捷径就是缓存命中",
           "url": "articals/article-73e6ae28fb.html"
