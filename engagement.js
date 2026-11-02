@@ -1,6 +1,17 @@
 // Set this after deploying the Worker, for example https://xixi-site-counter.example.workers.dev.
 const engagementApi = 'https://xixi-site-counter.lorenaltstatt.workers.dev';
 
+const createVisitorId = () => {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  const bytes = new Uint8Array(16);
+  if (typeof crypto.getRandomValues === 'function') crypto.getRandomValues(bytes);
+  else bytes.forEach((_, index) => { bytes[index] = Math.floor(Math.random() * 256); });
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+};
+
 const visitorLabel = document.createElement('span');
 visitorLabel.className = 'visitor-count';
 visitorLabel.textContent = '访客 · —';
@@ -26,10 +37,27 @@ if (article && /^(?:article|article-[a-z0-9-]+)$/.test(articleId || '')) {
 if (engagementApi) {
   const api = engagementApi.replace(/\/$/, '');
   const visitorKey = 'xixi-visitor-id';
-  let visitorId = localStorage.getItem(visitorKey);
+  let storage = null;
+  for (const name of ['localStorage', 'sessionStorage']) {
+    try {
+      const candidate = window[name];
+      candidate.setItem('__xixi_storage_test__', '1');
+      candidate.removeItem('__xixi_storage_test__');
+      storage = candidate;
+      break;
+    } catch {}
+  }
+  const readStorage = (key) => {
+    try { return storage?.getItem(key) || null; } catch { return null; }
+  };
+  const writeStorage = (key, value) => {
+    try { storage?.setItem(key, value); } catch {}
+  };
+  let visitorId = readStorage(visitorKey) || window.__xixiVisitorId;
   if (!visitorId) {
-    visitorId = crypto.randomUUID();
-    localStorage.setItem(visitorKey, visitorId);
+    visitorId = createVisitorId();
+    window.__xixiVisitorId = visitorId;
+    writeStorage(visitorKey, visitorId);
   }
   const request = async (path, options) => {
     const response = await fetch(`${api}${path}`, options);
@@ -59,7 +87,7 @@ if (engagementApi) {
     };
     request(`/api/likes/${articleId}`).then(({ count }) => {
       likeCount.textContent = `${count} 次喜欢`;
-      if (localStorage.getItem(likedKey) === visitorId) markLiked();
+      if (readStorage(likedKey) === visitorId) markLiked();
       else likeButton.disabled = false;
     }).catch(() => {
       likeCount.textContent = '点赞暂不可用';
@@ -69,7 +97,7 @@ if (engagementApi) {
       try {
         const { count, added } = await post(`/api/likes/${articleId}`, { visitorId });
         likeCount.textContent = `${count} 次喜欢`;
-        localStorage.setItem(likedKey, visitorId);
+        writeStorage(likedKey, visitorId);
         markLiked();
         likeMessage.textContent = '感谢喜欢';
         if (added) {

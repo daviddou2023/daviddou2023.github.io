@@ -18,3 +18,7 @@
 
 当前 Cloudflare 项目会在推送后自动部署，因此先完成 D1 创建、数据库 ID 和 Worker
 地址配置，再推送这些改动。
+
+Cloudflare 左侧菜单里，找 Storage & databases → D1 SQL Database。进入后点击数据库 xixi-site-counter，再打开数据库详情页中的 Console 标签或 SQL 输入区，粘贴并运行：  
+
+`SELECT COUNT(*) AS unique_visitors FROM visitors;`
