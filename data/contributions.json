@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-11-02T09:20:59.844Z",
+  "generatedAt": "2026-11-03T11:41:21.258Z",
   "years": {
     "2026": {
       "days": {
         "2026-10-18": 7,
         "2026-10-17": 2,
         "2026-10-21": 1,
+        "2026-11-03": 1,
         "2026-10-26": 1,
         "2026-10-27": 2,
         "2026-11-02": 2,
@@ -20,15 +21,22 @@
       },
       "entries": [
         {
+          "date": "2026-11-03",
+          "submittedAt": "",
+          "title": "BM25检索（261103）",
+          "excerpt": "定义：Best Matching 25， BM25是一种用来评估文档与查询之间相关性的排名算法，基于[TF-IDF](https://zhida.zhihu.com/search?content_id=246932635&content_type=Article&match_order=1&q=TF-IDF&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3OTM4NzAzMjIsInEiOiJURi1JREYiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoyNDY5MzI2MzUsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.nW2bJLrRW7L4UpoB5SeOdC4pghTK5CcPZuCnSrkTylg&zhida_source=entity)进行改进，常应用于信息检索领域。它的原理十分简单：将输入的句子sentence进行分词，然后分别计算句子中每个词word与文档doc的相关度，然后进行加权求和。得到句子与文档的相关度评分。评分公式如下：",
+          "url": "articals/article-a13957b699.html"
+        },
+        {
           "date": "2026-11-02",
-          "submittedAt": "2026-10-27T23:01:09+08:00",
+          "submittedAt": "2026-11-02T17:21:30+08:00",
           "title": "deep Research（261027）",
           "excerpt": "尽管LLMs在通用任务中表现卓越，但是其知识受限于**训练时的静态参数记忆，** 难以应对动态或者专业领域任务。",
           "url": "articals/article-bf07542214.html"
         },
         {
           "date": "2026-11-02",
-          "submittedAt": "",
+          "submittedAt": "2026-11-02T17:21:30+08:00",
           "title": "从Transformer到LLM的思考（261102）",
           "excerpt": "曾几何时，我脑海中有了这样一个认知“Transformer模型是LLM的基础”，但是奇怪的是，我似乎并不知道这个认知从何而来，恰又读到了rubber duck的思考方法，借此机会进行梳理。",
           "url": "articals/article-2e90df2780.html"
@@ -70,7 +78,7 @@
         },
         {
           "date": "2026-10-27",
-          "submittedAt": "2026-10-27T23:01:09+08:00",
+          "submittedAt": "2026-11-02T17:21:30+08:00",
           "title": "deep Research（261027）",
           "excerpt": "尽管LLMs在通用任务中表现卓越，但是其知识受限于**训练时的静态参数记忆，** 难以应对动态或者专业领域任务。",
           "url": "articals/article-bf07542214.html"
