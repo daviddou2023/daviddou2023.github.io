@@ -3,7 +3,7 @@ main = "index.mjs"
 compatibility_date = "2026-11-02"
 
 [vars]
-SITE_ORIGIN = "https://daviddou2023.github.io"
+SITE_ORIGIN = "https://daviddou2023.site"
 
 [[d1_databases]]
 binding = "DB"
