@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T03:35:55.670Z",
+  "generatedAt": "2026-11-09T13:37:45.922Z",
   "years": {
     "2026": {
       "days": {
@@ -14,19 +14,33 @@
         "2026-10-29": 1,
         "2026-10-19": 2,
         "2026-10-30": 1,
+        "2026-11-09": 3,
         "2026-10-20": 3,
         "2026-11-01": 2,
         "2026-10-25": 1,
-        "2026-10-31": 1,
-        "2026-11-09": 1
+        "2026-10-31": 1
       },
       "entries": [
         {
           "date": "2026-11-09",
-          "submittedAt": "",
+          "submittedAt": "2026-11-09T11:36:27+08:00",
           "title": "越狱攻击-Jailbreak（261109）",
           "excerpt": "越狱攻击指的是通过篡改用户提示（prompt），比如添加误导性前缀、角色扮演、上下文污染等方式，绕过模型的安全对齐机制、输入/输出风控系统，诱导模型执行禁止操作或者生成违禁内容。",
           "url": "articals/article-cad31a6a46.html"
+        },
+        {
+          "date": "2026-11-09",
+          "submittedAt": "",
+          "title": "StreamingLLM与attention sinks（261109）",
+          "excerpt": "---",
+          "url": "articals/article-005c2eef99.html"
+        },
+        {
+          "date": "2026-11-09",
+          "submittedAt": "",
+          "title": "三明治防御（261109）",
+          "excerpt": "在LLM的应用开发中，常见的安全问题是提示词注入攻击（prompt injection）。三明治防御（sandwich defense）不仅是目前成本最低的防御手段，更是一种利用 结构化提示词来重塑模型认知的技巧。",
+          "url": "articals/article-c58feb273c.html"
         },
         {
           "date": "2026-11-03",
