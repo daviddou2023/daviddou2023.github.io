@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T11:41:21.258Z",
+  "generatedAt": "2026-11-09T03:35:55.670Z",
   "years": {
     "2026": {
       "days": {
@@ -17,12 +17,20 @@
         "2026-10-20": 3,
         "2026-11-01": 2,
         "2026-10-25": 1,
-        "2026-10-31": 1
+        "2026-10-31": 1,
+        "2026-11-09": 1
       },
       "entries": [
         {
-          "date": "2026-11-03",
+          "date": "2026-11-09",
           "submittedAt": "",
+          "title": "越狱攻击-Jailbreak（261109）",
+          "excerpt": "越狱攻击指的是通过篡改用户提示（prompt），比如添加误导性前缀、角色扮演、上下文污染等方式，绕过模型的安全对齐机制、输入/输出风控系统，诱导模型执行禁止操作或者生成违禁内容。",
+          "url": "articals/article-cad31a6a46.html"
+        },
+        {
+          "date": "2026-11-03",
+          "submittedAt": "2026-11-03T19:42:22+08:00",
           "title": "BM25检索（261103）",
           "excerpt": "定义：Best Matching 25， BM25是一种用来评估文档与查询之间相关性的排名算法，基于[TF-IDF](https://zhida.zhihu.com/search?content_id=246932635&content_type=Article&match_order=1&q=TF-IDF&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3OTM4NzAzMjIsInEiOiJURi1JREYiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoyNDY5MzI2MzUsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.nW2bJLrRW7L4UpoB5SeOdC4pghTK5CcPZuCnSrkTylg&zhida_source=entity)进行改进，常应用于信息检索领域。它的原理十分简单：将输入的句子sentence进行分词，然后分别计算句子中每个词word与文档doc的相关度，然后进行加权求和。得到句子与文档的相关度评分。评分公式如下：",
           "url": "articals/article-a13957b699.html"
