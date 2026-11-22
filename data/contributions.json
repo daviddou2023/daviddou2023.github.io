@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T14:53:21.075Z",
+  "generatedAt": "2026-11-22T12:19:53.225Z",
   "years": {
     "2026": {
       "days": {
@@ -19,13 +19,21 @@
         "2026-11-01": 2,
         "2026-11-14": 1,
         "2026-11-17": 1,
+        "2026-11-22": 1,
         "2026-10-25": 1,
         "2026-10-31": 1
       },
       "entries": [
         {
-          "date": "2026-11-17",
+          "date": "2026-11-22",
           "submittedAt": "",
+          "title": "第3-4周-数据库与 SQLAlchemy 异步 ORM-第二章到第六章-261117-261122",
+          "excerpt": "安装 MySQL8.0.34 https://www.datacamp.com/zh/tutorial/how-to-install-mysql",
+          "url": "articals/article-a8c7998ebf.html"
+        },
+        {
+          "date": "2026-11-17",
+          "submittedAt": "2026-11-17T22:53:59+08:00",
           "title": "第3-4周-数据库与 SQLAlchemy 异步 ORM-第一章数据库和SQL基础-261114-261117",
           "excerpt": "> 理解数据怎样从内存进入数据库、怎样安全地读写，以及 ORM 如何影响实际 SQL 查询",
           "url": "articals/article-9b4ade198d.html"
