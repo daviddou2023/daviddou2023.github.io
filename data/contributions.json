@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T12:19:53.225Z",
+  "generatedAt": "2026-11-23T15:53:12.335Z",
   "years": {
     "2026": {
       "days": {
@@ -20,13 +20,21 @@
         "2026-11-14": 1,
         "2026-11-17": 1,
         "2026-11-22": 1,
+        "2026-11-23": 1,
         "2026-10-25": 1,
         "2026-10-31": 1
       },
       "entries": [
         {
-          "date": "2026-11-22",
+          "date": "2026-11-23",
           "submittedAt": "",
+          "title": "第5-6周-Redis + Celery 异步任务 + 幂等",
+          "excerpt": "项目主线：把耗时 Agent 任务从同步 HTTP 中剥离，丢进 Celery，用 Redis 做幂等和状态缓存。",
+          "url": "articals/article-e9621d9555.html"
+        },
+        {
+          "date": "2026-11-22",
+          "submittedAt": "2026-11-22T20:20:49+08:00",
           "title": "第3-4周-数据库与 SQLAlchemy 异步 ORM-第二章到第六章-261117-261122",
           "excerpt": "安装 MySQL8.0.34 https://www.datacamp.com/zh/tutorial/how-to-install-mysql",
           "url": "articals/article-a8c7998ebf.html"
